@@ -222,10 +222,13 @@ function App() {
             </button>
 
             <button
-              onClick={() => deleteProject(project._id)}
-            >
-              Delete
-            </button>
+  onClick={() => {
+    alert("Delete button clicked");
+    deleteProject(project._id);
+  }}
+>
+  Delete
+</button>
           </div>
         ))
       )}
