@@ -35,7 +35,7 @@ router.put("/:id", async (req, res) => {
       },
       { new: true }
     );
-   res.json(updatedProject);
+    res.json(updatedProject);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -43,10 +43,21 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    await Project.findByIdAndDelete(req.params.id);
-    res.json({ message: "Project deleted successfully" });
+    const deletedProject = await Project.findByIdAndDelete(req.params.id);
+
+    if (!deletedProject) {
+      return res.status(404).json({
+        message: "Project not found"
+      });
+    }
+
+    res.status(200).json({
+      message: "Project deleted successfully"
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message
+    });
   }
 });
 
