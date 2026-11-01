@@ -223,7 +223,6 @@ function App() {
 
             <button
   onClick={() => {
-    alert("Delete button clicked");
     deleteProject(project._id);
   }}
 >
